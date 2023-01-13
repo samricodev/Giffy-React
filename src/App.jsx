@@ -16,7 +16,7 @@ function App() {
         <section className="App-content">
           <Link to="/">
             <figure className="App-logo">
-              <img src="../public/logo.png" alt="Giffy logo" />
+              <img src="/logo.png" alt="Giffy logo" />
             </figure>
           </Link>
           <GifsContextProvider>
