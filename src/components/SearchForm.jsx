@@ -1,25 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useLocation } from 'wouter'
+import useForm from '../hooks/useForm'
 import '../css/SearchForm.css'
 
 const RATINGS = ['g','pg','pg-13','r']
 
 function SearchForm({ initialRating = 'g', initialKeyword = ''}) {
-  const [keyword, setKeyword] = useState(decodeURIComponent(initialKeyword))
-  const [rating, setRating] = useState(initialRating)
   const [path, pushLocation] = useLocation()
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    pushLocation(`/search/${keyword}/${rating}`)
-  }
+  const { keyword, rating, updateKeyword, updateRating} = useForm({ initialKeyword, initialRating })
 
   const handleChange = (event) => {
-    setKeyword(event.target.value)
+    updateKeyword(event.target.value)
   }
 
   const handleChangeRating = (event) => {
-    setRating(event.target.value)
+    updateRating(event.target.value)
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    pushLocation(`/search/${keyword}/${rating}`)
   }
 
   return (
